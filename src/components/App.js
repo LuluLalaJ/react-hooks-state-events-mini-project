@@ -15,15 +15,13 @@ function App() {
     setCategoryDisplayed(category)
   }
 
-  function handleDelete(deletedTask) {
-    console.log(deletedTask)
-    const updatedTasks = tasks.filter(task => task !== deletedTask )
+  function handleDelete(text) {
+    const updatedTasks = tasks.filter(task => task.text !== text )
     setTasks(updatedTasks)
   }  
   const tasksByCategory = tasks.filter( task => task.category === categoryDisplayed || "All" === categoryDisplayed)
 
-  function handleSubmit(event, formData) {
-    event.preventDefault()
+  function handleSubmit(formData) {
     const updatedTasks = [...tasks, formData]
     setTasks(updatedTasks)
   }

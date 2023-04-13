@@ -16,7 +16,8 @@ function NewTaskForm({categories, onTaskFormSubmit}) {
   }
 
   function submitAndClear(e, formData) {
-    onTaskFormSubmit(e,formData);
+    e.preventDefault()
+    onTaskFormSubmit(formData);
     setFormData({
       text: "",
       category: "Code"})
