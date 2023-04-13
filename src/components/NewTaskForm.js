@@ -6,7 +6,7 @@ function NewTaskForm({categories, onTaskFormSubmit}) {
     category: "Code"
   })
 
-  function updateForm(event) {
+  function updateFormData(event) {
     const key = event.target.name
     const value = event.target.value 
     setFormData({
@@ -15,7 +15,7 @@ function NewTaskForm({categories, onTaskFormSubmit}) {
     })
   }
 
-  function submitAndClear(e, formData) {
+  function submitAndResetForm(e, formData) {
     e.preventDefault()
     onTaskFormSubmit(formData);
     setFormData({
@@ -30,15 +30,14 @@ function NewTaskForm({categories, onTaskFormSubmit}) {
   })
 
   return (
-    <form className="new-task-form" onSubmit={(e)=>submitAndClear(e, formData)}>
+    <form className="new-task-form" onSubmit={(e)=>submitAndResetForm(e, formData)}>
       <label>
         Details
-        <input type="text" name="text" onChange={updateForm} value={formData.text}/>
+        <input type="text" name="text" onChange={updateFormData} value={formData.text}/>
       </label>
       <label>
         Category
-        <select name="category" onChange={updateForm} value={formData.category}>
-          {/* render <option> elements for each category here */}
+        <select name="category" onChange={updateFormData} value={formData.category}>
           {renderOptions}
         </select>
       </label>

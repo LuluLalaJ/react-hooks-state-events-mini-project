@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 
-function CategoryFilter({categories, onDisplayCategory}) {
+function CategoryFilter({categories, filterByCategory}) {
 
-    const [selectedCategory, setSelectedCategory] = useState(null)
+  const [selectedCategory, setSelectedCategory] = useState(null)
 
-    function filterByCategory(category) {
-      onDisplayCategory(category);
-      setSelectedCategory(category)
-    }
-  const renderButton = categories.map(category => {
+  function rerenderByCategory(category) {
+    setSelectedCategory(category)
+    filterByCategory(category);
+  }
+  const renderButtons = categories.map(category => {
     const buttonClass = (category === selectedCategory ? "selected" : "")
     return (
       <button 
         key={category}
         className={buttonClass}
-        onClick={() => filterByCategory(category)}>
+        onClick={() => rerenderByCategory(category)}
+      >
         {category}
       </button>
     )
@@ -23,8 +24,7 @@ function CategoryFilter({categories, onDisplayCategory}) {
   return (
     <div className="categories">
       <h5>Category filters</h5>
-      {/* render <button> elements for each category here */ }
-      {renderButton}
+      {renderButtons}
     </div>
   );
 }
